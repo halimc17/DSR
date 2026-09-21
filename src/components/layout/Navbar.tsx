@@ -30,11 +30,11 @@ export function Navbar() {
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14 sm:h-16">
             {/* Brand Logo & Project Title */}
-            <Link href="/" className="flex items-center space-x-2 sm:space-x-3">
+            <Link href="/" className="flex items-center space-x-2 sm:space-x-3 min-w-0 mr-2 flex-1 sm:flex-initial">
               <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-slate-900 text-amber-400 font-bold shadow-sm flex-shrink-0">
                 <Building2 className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
-              <div className="min-w-0">
+              <div className="min-w-0 flex-1">
                 <div className="flex items-center space-x-1.5 sm:space-x-2">
                   <span className="text-xs sm:text-sm font-semibold text-slate-900 tracking-tight truncate">
                     PT MITRA BANGUN MAHAKARYA
@@ -82,14 +82,14 @@ export function Navbar() {
               </Link>
             </div>
 
-            {/* Mobile Top "+ Input" Action Button */}
-            <div className="md:hidden flex items-center">
+            {/* Mobile Top Action Button */}
+            <div className="md:hidden flex items-center flex-shrink-0">
               <Link
                 href="/dsr/new"
-                className="inline-flex items-center px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-amber-500 text-slate-950 shadow-sm active:scale-95"
+                className="inline-flex items-center justify-center px-2.5 py-1.5 rounded-xl text-xs font-semibold bg-amber-500 hover:bg-amber-400 text-slate-950 shadow-sm active:scale-95 whitespace-nowrap flex-shrink-0"
               >
-                <PlusCircle className="w-3.5 h-3.5 mr-1" />
-                <span>+ DSR</span>
+                <PlusCircle className="w-3.5 h-3.5 mr-1 flex-shrink-0" />
+                <span>Input DSR</span>
               </Link>
             </div>
           </div>

@@ -109,15 +109,15 @@ export default async function DashboardPage() {
       {/* Bottom Section: Recent DSRs & Open Issues */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Recent Daily Reports */}
-        <div className="lg:col-span-2 bg-white rounded-xl border border-slate-200 shadow-sm p-6">
-          <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-4">
-            <div>
-              <h3 className="text-base font-bold text-slate-900">Laporan DSR Terbaru</h3>
-              <p className="text-xs text-slate-500">Daftar laporan harian yang telah diinput lapangan</p>
+        <div className="lg:col-span-2 bg-white rounded-xl border border-slate-200 shadow-sm p-4 sm:p-6">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-4 gap-2">
+            <div className="min-w-0 flex-1">
+              <h3 className="text-base font-semibold text-slate-900 truncate">Laporan DSR Terbaru</h3>
+              <p className="text-xs text-slate-500 truncate sm:whitespace-normal">Daftar laporan harian yang telah diinput lapangan</p>
             </div>
             <Link
               href="/dsr"
-              className="text-xs font-semibold text-blue-600 hover:text-blue-800 inline-flex items-center"
+              className="text-xs font-semibold text-blue-600 hover:text-blue-800 inline-flex items-center whitespace-nowrap flex-shrink-0"
             >
               Lihat Semua <ChevronRight className="w-3.5 h-3.5 ml-0.5" />
             </Link>
@@ -199,13 +199,21 @@ export default async function DashboardPage() {
         </div>
 
         {/* Open Issues & Obstacles */}
-        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
-          <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-4">
-            <div>
-              <h3 className="text-base font-bold text-slate-900">Kendala & Isu Lapangan</h3>
-              <p className="text-xs text-slate-500">Bukti penunjang force majeure / perpanjangan waktu</p>
+        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-4 sm:p-6">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-4 gap-3">
+            <div className="min-w-0 flex-1 pr-1">
+              <h3 className="text-base font-semibold text-slate-900 truncate">Kendala & Isu Lapangan</h3>
+              <p className="text-xs text-slate-500 truncate sm:whitespace-normal">
+                Bukti penunjang force majeure / perpanjangan waktu
+              </p>
             </div>
-            <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-rose-100 text-rose-800">
+            <span
+              className={`text-xs font-semibold px-2.5 py-1 rounded-full whitespace-nowrap flex-shrink-0 ${
+                data.openIssues.length > 0
+                  ? 'bg-rose-100 text-rose-800 border border-rose-200'
+                  : 'bg-emerald-50 text-emerald-700 border border-emerald-200/60'
+              }`}
+            >
               {data.openIssues.length} Aktif
             </span>
           </div>
