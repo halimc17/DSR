@@ -1,0 +1,945 @@
+[
+  {
+    "urutan": 1,
+    "kode": "A.1.1",
+    "parentKode": "A.1",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.1. PEKERJAAN PERSIAPAN",
+    "uraian": "Pek. Pembersihan Awal Lapangan",
+    "volume": 1.0,
+    "satuan": "Ls",
+    "bobotJadwalAsli": 0.16668549461004178,
+    "plans": {
+      "1": 0.16668549461004178
+    }
+  },
+  {
+    "urutan": 2,
+    "kode": "A.1.2",
+    "parentKode": "A.1",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.1. PEKERJAAN PERSIAPAN",
+    "uraian": "Pek. Pagar Pengaman Sementara Dari Plastik Hitam",
+    "volume": 54.55,
+    "satuan": "m²'",
+    "bobotJadwalAsli": 0.34779553520990003,
+    "plans": {
+      "1": 0.17389776760495002,
+      "2": 0.17389776760495002
+    }
+  },
+  {
+    "urutan": 3,
+    "kode": "A.1.3",
+    "parentKode": "A.1",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.1. PEKERJAAN PERSIAPAN",
+    "uraian": "Pek. Bongkaran Lantai Keramik dan Keramik Dinding",
+    "volume": 296.39,
+    "satuan": "m²²",
+    "bobotJadwalAsli": 0.6212542153744388,
+    "plans": {
+      "1": 0.3106271076872194,
+      "2": 0.3106271076872194
+    }
+  },
+  {
+    "urutan": 4,
+    "kode": "A.1.4",
+    "parentKode": "A.1",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.1. PEKERJAAN PERSIAPAN",
+    "uraian": "Pek. Bongkaran Dinding Bata, Kusen, Daun Pintu, Daun Jendela, Plumbing Eks. AC central",
+    "volume": 175.46,
+    "satuan": "m²²",
+    "bobotJadwalAsli": 0.7414022450164456,
+    "plans": {
+      "2": 0.3707011225082228,
+      "3": 0.3707011225082228
+    }
+  },
+  {
+    "urutan": 5,
+    "kode": "A.1.5",
+    "parentKode": "A.1",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.1. PEKERJAAN PERSIAPAN",
+    "uraian": "Pek. Bongkaran Penutup Plafon dan Rangka Plafon",
+    "volume": 296.39,
+    "satuan": "m²²",
+    "bobotJadwalAsli": 0.44253720341222424,
+    "plans": {
+      "1": 0.22126860170611212,
+      "2": 0.22126860170611212
+    }
+  },
+  {
+    "urutan": 6,
+    "kode": "A.2.1",
+    "parentKode": "A.2",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.2. PEKERJAAN PONDASI",
+    "uraian": "Pek. Galian Tanah Biasa Max Kedalaman 1 m'\n(Pondasi Menerus dan Pondasi Tapak)",
+    "volume": 12.41,
+    "satuan": "m²³",
+    "bobotJadwalAsli": 0.16641621419349925,
+    "plans": {
+      "2": 0.16641621419349925
+    }
+  },
+  {
+    "urutan": 7,
+    "kode": "A.2.1",
+    "parentKode": "A.2",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.2. PEKERJAAN PONDASI",
+    "uraian": "Pek. Urugan Pasir Bawah Pondasi",
+    "volume": 1.24,
+    "satuan": "m²³",
+    "bobotJadwalAsli": 0.04248513223719667,
+    "plans": {
+      "2": 0.04248513223719667
+    }
+  },
+  {
+    "urutan": 8,
+    "kode": "A.2.1",
+    "parentKode": "A.2",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.2. PEKERJAAN PONDASI",
+    "uraian": "Pek. Pasangan Pondasi Bata Merah  1Pc : 3Ps 1 Bata",
+    "volume": 49.57,
+    "satuan": "m²²",
+    "bobotJadwalAsli": 1.896473257613833,
+    "plans": {
+      "3": 1.896473257613833
+    }
+  },
+  {
+    "urutan": 9,
+    "kode": "A.2.1",
+    "parentKode": "A.2",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.2. PEKERJAAN PONDASI",
+    "uraian": "Pek. Urugan Tanah Kembali",
+    "volume": 12.41,
+    "satuan": "m²³",
+    "bobotJadwalAsli": 0.04582225751518206,
+    "plans": {
+      "3": 0.04582225751518206
+    }
+  },
+  {
+    "urutan": 10,
+    "kode": "A.3.1",
+    "parentKode": "A.3",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.3. PEKERJAAN BETON BERTULANG",
+    "uraian": "Pek. Sloof Beton (12x15) cm, ad. K-250, Rasio 300 Kg/M³\n+ Bekisting",
+    "volume": 1.78,
+    "satuan": "m²³",
+    "bobotJadwalAsli": 1.3633537708221812,
+    "plans": {
+      "3": 1.3633537708221812
+    }
+  },
+  {
+    "urutan": 11,
+    "kode": "A.3.2",
+    "parentKode": "A.3",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.3. PEKERJAAN BETON BERTULANG",
+    "uraian": "Pek. Pondasi Tapak (60x60x20) cm + Kolom Umpak (15x15) cm, ad. K-250, Rasio 250 Kg/M³ +Bekisting",
+    "volume": 2.37,
+    "satuan": "m²³",
+    "bobotJadwalAsli": 1.8152299641190737,
+    "plans": {
+      "2": 0.9076149820595368,
+      "3": 0.9076149820595368
+    }
+  },
+  {
+    "urutan": 12,
+    "kode": "A.3.3",
+    "parentKode": "A.3",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.3. PEKERJAAN BETON BERTULANG",
+    "uraian": "Pek. Kolom Beton (12 X 12) cm, Ad. K-250,\nRasio 300 Kg/M³ + Bekisting",
+    "volume": 1.56,
+    "satuan": "m²³",
+    "bobotJadwalAsli": 1.9568554164078749,
+    "plans": {
+      "3": 0.9784277082039374,
+      "4": 0.9784277082039374
+    }
+  },
+  {
+    "urutan": 13,
+    "kode": "A.3.4",
+    "parentKode": "A.3",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.3. PEKERJAAN BETON BERTULANG",
+    "uraian": "Pek. Balok Beton (12 X 15) cm,ad. K-250,\nRasio 300 Kg/M³ + Bekisting",
+    "volume": 2.38,
+    "satuan": "m²³",
+    "bobotJadwalAsli": 2.2956495148613856,
+    "plans": {
+      "7": 2.2956495148613856
+    }
+  },
+  {
+    "urutan": 14,
+    "kode": "A.4.1",
+    "parentKode": "A.4",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.4. PEKERJAAN DINDING, PINTU DAN JENDELA",
+    "uraian": "Pek. Pasang Dinding Bata baru dan Penutupan eks.\nLubang Jendela, Ad. 1:3 Pas.1/2 Bt",
+    "volume": 359.77,
+    "satuan": "m²²",
+    "bobotJadwalAsli": 4.846555705548397,
+    "plans": {
+      "3": 1.6155185685161324,
+      "4": 1.6155185685161324,
+      "5": 1.6155185685161324
+    }
+  },
+  {
+    "urutan": 15,
+    "kode": "A.4.2",
+    "parentKode": "A.4",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.4. PEKERJAAN DINDING, PINTU DAN JENDELA",
+    "uraian": "Pek. Plesteran Dinding, ad. 1:3 + Perapian Kembali Eks.\nBongkaran",
+    "volume": 719.54,
+    "satuan": "m²²",
+    "bobotJadwalAsli": 4.5414983711610315,
+    "plans": {
+      "4": 1.5138327903870106,
+      "5": 1.5138327903870106,
+      "6": 1.5138327903870106
+    }
+  },
+  {
+    "urutan": 16,
+    "kode": "A.4.3",
+    "parentKode": "A.4",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.4. PEKERJAAN DINDING, PINTU DAN JENDELA",
+    "uraian": "Pasang Kembali Dinding Partisi Ruang Konsultasi &\nPemeriksaan, Rangka Kayu Kls III + Penutup GRC",
+    "volume": 83.97,
+    "satuan": "m²²",
+    "bobotJadwalAsli": 2.76310346274199,
+    "plans": {
+      "6": 2.76310346274199
+    }
+  },
+  {
+    "urutan": 17,
+    "kode": "A.4.4",
+    "parentKode": "A.4",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.4. PEKERJAAN DINDING, PINTU DAN JENDELA",
+    "uraian": "Pek. Pasang Pintu Alumunium Geser Kaca Bening + Sand\nBlasting + Perlengkapan (uk. 1,25 x 2,1 m)",
+    "volume": 6.0,
+    "satuan": "Unit",
+    "bobotJadwalAsli": 3.5003953868108777,
+    "plans": {
+      "4": 0.8750988467027194,
+      "5": 0.8750988467027194,
+      "6": 0.8750988467027194,
+      "7": 0.8750988467027194
+    }
+  },
+  {
+    "urutan": 18,
+    "kode": "A.4.5",
+    "parentKode": "A.4",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.4. PEKERJAAN DINDING, PINTU DAN JENDELA",
+    "uraian": "Pek. Pemindahan Pintu Alumunium Geser Kaca Bening ruang HD isolasi + Sand Blasting + Perlengkapan (Pintu\nuk. 1,25 x 2,1 m)",
+    "volume": 1.0,
+    "satuan": "Unit",
+    "bobotJadwalAsli": 0.1250141209575313,
+    "plans": {
+      "7": 0.1250141209575313
+    }
+  },
+  {
+    "urutan": 19,
+    "kode": "A. 4.6",
+    "parentKode": "A. 4",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.4. PEKERJAAN DINDING, PINTU DAN JENDELA",
+    "uraian": "Pek. Pasang Pintu Kaca Alumunium 2 Daun, Frame Alumunium, floor Hinges +\nSandblasting+ Perlengkapan (Pintu Uk. 1,35 x",
+    "volume": 1.0,
+    "satuan": "Unit",
+    "bobotJadwalAsli": 1.3168154074193301,
+    "plans": {
+      "7": 1.3168154074193301
+    }
+  },
+  {
+    "urutan": 20,
+    "kode": "A.4.7",
+    "parentKode": "A.4",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.4. PEKERJAAN DINDING, PINTU DAN JENDELA",
+    "uraian": "Pek. Pasang Pintu Kayu Finishing HPL  2 daun + Perlengkapan (1 Unit Pintu uk. 1,2 x 2,1, Engsel Biasa)",
+    "volume": 1.0,
+    "satuan": "Unit",
+    "bobotJadwalAsli": 0.3833766376030961,
+    "plans": {
+      "7": 0.3833766376030961
+    }
+  },
+  {
+    "urutan": 21,
+    "kode": "A.4.8",
+    "parentKode": "A.4",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.4. PEKERJAAN DINDING, PINTU DAN JENDELA",
+    "uraian": "Pek. Pasang Pintu Kayu Multiplek+Finishing HPL+ Perlengkapan (uk. 0,9 x 2,1, Engsel Biasa)",
+    "volume": 6.0,
+    "satuan": "Unit",
+    "bobotJadwalAsli": 1.8002033417884513,
+    "plans": {
+      "6": 0.9001016708942257,
+      "7": 0.9001016708942257
+    }
+  },
+  {
+    "urutan": 22,
+    "kode": "A.4.9",
+    "parentKode": "A.4",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.4. PEKERJAAN DINDING, PINTU DAN JENDELA",
+    "uraian": "Pek. Pasang Pintu KM/WC Customize Size, Pintu Alumunium Kaca + Perlengkapan (uk. 0.9 x 2.1)",
+    "volume": 6.0,
+    "satuan": "Unit",
+    "bobotJadwalAsli": 1.8002033417884513,
+    "plans": {
+      "6": 0.9001016708942257,
+      "7": 0.9001016708942257
+    }
+  },
+  {
+    "urutan": 23,
+    "kode": "A.4.10",
+    "parentKode": "A.4",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.4. PEKERJAAN DINDING, PINTU DAN JENDELA",
+    "uraian": "Pek. Pasang Keramik Dinding KM/WC dan Gudang Kotor, Granit HT 60 cm X 60 cm",
+    "volume": 32.97,
+    "satuan": "m²²",
+    "bobotJadwalAsli": 1.3704052923260874,
+    "plans": {
+      "7": 1.3704052923260874
+    }
+  },
+  {
+    "urutan": 24,
+    "kode": "A.5.1",
+    "parentKode": "A.5",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.5. PEKERJAAN LANTAI",
+    "uraian": "Pek. Perataan Tanah Bawah Lantai",
+    "volume": 1.0,
+    "satuan": "Ls",
+    "bobotJadwalAsli": 0.4167137365251044,
+    "plans": {
+      "3": 0.4167137365251044
+    }
+  },
+  {
+    "urutan": 25,
+    "kode": "A.5.2",
+    "parentKode": "A.5",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.5. PEKERJAAN LANTAI",
+    "uraian": "Pek. Urugan Pasir Bawah Lantai",
+    "volume": 17.61,
+    "satuan": "m²³",
+    "bobotJadwalAsli": 0.6209870235271437,
+    "plans": {
+      "3": 0.6209870235271437
+    }
+  },
+  {
+    "urutan": 26,
+    "kode": "A.5.3",
+    "parentKode": "A.5",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.5. PEKERJAAN LANTAI",
+    "uraian": "Pek. Pasang Lantai KM/WC Granit Kasar\nukuran 60 x 60 cm",
+    "volume": 14.35,
+    "satuan": "m²²",
+    "bobotJadwalAsli": 0.4360401212016196,
+    "plans": {
+      "6": 0.4360401212016196
+    }
+  },
+  {
+    "urutan": 27,
+    "kode": "A.5.4",
+    "parentKode": "A.5",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.5. PEKERJAAN LANTAI",
+    "uraian": "Pek. Pasang Lantai Granit Halus Ukuran 60x60 cm",
+    "volume": 323.44,
+    "satuan": "m²²",
+    "bobotJadwalAsli": 9.828192395822583,
+    "plans": {
+      "7": 4.914096197911292,
+      "8": 4.914096197911292
+    }
+  },
+  {
+    "urutan": 28,
+    "kode": "A.7.1",
+    "parentKode": "A.7",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.7. PEKERJAAN PLAFON",
+    "uraian": "Pek. Pasang Rangka Plafond, Alumunium Hollow",
+    "volume": 352.21,
+    "satuan": "m²²",
+    "bobotJadwalAsli": 4.286439612691141,
+    "plans": {
+      "6": 2.1432198063455705,
+      "7": 2.1432198063455705
+    }
+  },
+  {
+    "urutan": 29,
+    "kode": "A.7.2",
+    "parentKode": "A.7",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.7. PEKERJAAN PLAFON",
+    "uraian": "Pek. Pasang Penutup Plafond, Kalsiboard 3.5 mm",
+    "volume": 352.21,
+    "satuan": "m²²",
+    "bobotJadwalAsli": 2.980767063912294,
+    "plans": {
+      "7": 1.490383531956147,
+      "8": 1.490383531956147
+    }
+  },
+  {
+    "urutan": 30,
+    "kode": "A.7.3",
+    "parentKode": "A.7",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.7. PEKERJAAN PLAFON",
+    "uraian": "Pek. Penambahan Atap Area Ruang Onsite",
+    "volume": 50.57,
+    "satuan": "m²²",
+    "bobotJadwalAsli": 5.195615240199895,
+    "plans": {
+      "6": 2.5978076200999474,
+      "7": 2.5978076200999474
+    }
+  },
+  {
+    "urutan": 31,
+    "kode": "A.8.1",
+    "parentKode": "A.8",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.8. PEKERJAAN PENGECATAN",
+    "uraian": "Pek. Pengecatan Tembok Baru dan Lama, 1 Plamir + 1 Lapis Cat Dasar + 2 Lapis Cat Finish",
+    "volume": 814.0,
+    "satuan": "m²²",
+    "bobotJadwalAsli": 5.665231999047262,
+    "plans": {
+      "8": 2.832615999523631,
+      "9": 2.832615999523631
+    }
+  },
+  {
+    "urutan": 32,
+    "kode": "A.8.2",
+    "parentKode": "A.8",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.8. PEKERJAAN PENGECATAN",
+    "uraian": "Pek. Pengecatan Plafond Baru dan Lama , 1 Plamir + 1\nlapis Cat Dasar + 2 lapis Cat Finish",
+    "volume": 352.21,
+    "satuan": "m²²",
+    "bobotJadwalAsli": 1.2708104942722993,
+    "plans": {
+      "8": 0.6354052471361497,
+      "9": 0.6354052471361497
+    }
+  },
+  {
+    "urutan": 33,
+    "kode": "A.8.3",
+    "parentKode": "A.8",
+    "kategori": "A. Civil Work",
+    "subKategori": "A.8. PEKERJAAN PENGECATAN",
+    "uraian": "Pek. Cat Minyak (Kusen Kayu, Pintu Kayu, Lisplank GRC)",
+    "volume": 1.0,
+    "satuan": "Ls",
+    "bobotJadwalAsli": 0.16668549461004178,
+    "plans": {
+      "8": 0.08334274730502089,
+      "9": 0.08334274730502089
+    }
+  },
+  {
+    "urutan": 34,
+    "kode": "B.1.1",
+    "parentKode": "B.1",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.1. PEKERJAAN ELEKTRIKAL-ELEKTRONIK",
+    "uraian": "Pek. Pasang Stop Kontak 5 Channel setiap Bed Pasien, Ruang Konsultasi dan Pemeriksaan, Counter Administrasi",
+    "volume": 21.0,
+    "satuan": "Ttk",
+    "bobotJadwalAsli": 0.5017499134446314,
+    "plans": {
+      "7": 0.5017499134446314
+    }
+  },
+  {
+    "urutan": 35,
+    "kode": "B.1.2",
+    "parentKode": "B.1",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.1. PEKERJAAN ELEKTRIKAL-ELEKTRONIK",
+    "uraian": "Pek. Pasang Stop Kontak 8 Channel di Nurse Station",
+    "volume": 1.0,
+    "satuan": "Ttk",
+    "bobotJadwalAsli": 0.0393172627441482,
+    "plans": {
+      "7": 0.0393172627441482
+    }
+  },
+  {
+    "urutan": 36,
+    "kode": "B.1.3",
+    "parentKode": "B.1",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.1. PEKERJAAN ELEKTRIKAL-ELEKTRONIK",
+    "uraian": "Pek. Pasang Stop Kontak 2 Channel di Ruang\nTunggu",
+    "volume": 2.0,
+    "satuan": "Ttk",
+    "bobotJadwalAsli": 0.03511094095282423,
+    "plans": {
+      "7": 0.03511094095282423
+    }
+  },
+  {
+    "urutan": 37,
+    "kode": "B.1.4",
+    "parentKode": "B.1",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.1. PEKERJAAN ELEKTRIKAL-ELEKTRONIK",
+    "uraian": "Pek. Pasang Sakelar Tunggal inbow channel di masing-masing tempat tidur + Perlengkapan",
+    "volume": 19.0,
+    "satuan": "Ttk",
+    "bobotJadwalAsli": 0.26001563337319944,
+    "plans": {
+      "7": 0.13000781668659972,
+      "8": 0.13000781668659972
+    }
+  },
+  {
+    "urutan": 38,
+    "kode": "B.1.5",
+    "parentKode": "B.1",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.1. PEKERJAAN ELEKTRIKAL-ELEKTRONIK",
+    "uraian": "Pek. Pasang sakelar Ganda Inbow Channel +\nPerlengkapan",
+    "volume": 12.0,
+    "satuan": "Ttk",
+    "bobotJadwalAsli": 0.16422039949880332,
+    "plans": {
+      "7": 0.08211019974940166,
+      "8": 0.08211019974940166
+    }
+  },
+  {
+    "urutan": 39,
+    "kode": "B.1.6",
+    "parentKode": "B.1",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.1. PEKERJAAN ELEKTRIKAL-ELEKTRONIK",
+    "uraian": "Pek. Pasang Fitting Lampu (Include Lampu 24\nWatt LED Down Light) + Perlengkapan",
+    "volume": 45.0,
+    "satuan": "Ttk",
+    "bobotJadwalAsli": 1.0041903665557685,
+    "plans": {
+      "7": 0.5020951832778843,
+      "8": 0.5020951832778843
+    }
+  },
+  {
+    "urutan": 40,
+    "kode": "B.1.7",
+    "parentKode": "B.1",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.1. PEKERJAAN ELEKTRIKAL-ELEKTRONIK",
+    "uraian": "Pek. Pasang Stop Kontak HV-AC",
+    "volume": 10.0,
+    "satuan": "Titik",
+    "bobotJadwalAsli": 0.226860500005092,
+    "plans": {
+      "7": 0.113430250002546,
+      "8": 0.113430250002546
+    }
+  },
+  {
+    "urutan": 41,
+    "kode": "B.1.7.a",
+    "parentKode": "B.1",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.1. PEKERJAAN ELEKTRIKAL-ELEKTRONIK",
+    "uraian": "Pek. Pemindahan Panel Listrik SDP dan PHB",
+    "volume": 2.0,
+    "satuan": "Set",
+    "bobotJadwalAsli": 1.1667984622702925,
+    "plans": {
+      "9": 1.1667984622702925
+    }
+  },
+  {
+    "urutan": 42,
+    "kode": "B.1.8",
+    "parentKode": "B.1",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.1. PEKERJAAN ELEKTRIKAL-ELEKTRONIK",
+    "uraian": "Pek. Jalur Kabel Listrik NYY, Uk.4x16 mm dari PHB Belakang Onsite Ke Panel PHB Genset +  Perlengkapan",
+    "volume": 50.03,
+    "satuan": "m²'",
+    "bobotJadwalAsli": 2.5922291666529627,
+    "plans": {
+      "6": 1.2961145833264813,
+      "7": 1.2961145833264813
+    }
+  },
+  {
+    "urutan": 43,
+    "kode": "B.1.9",
+    "parentKode": "B.1",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.1. PEKERJAAN ELEKTRIKAL-ELEKTRONIK",
+    "uraian": "Pek. Pasang Jalur Kabel Tunggal NYM 1x2.5 mm + Perlengkapan (Jalur Kabel Stop Kontak + HVAC)",
+    "volume": 591.42,
+    "satuan": "m²'",
+    "bobotJadwalAsli": 2.3136413271247407,
+    "plans": {
+      "6": 1.1568206635623703,
+      "7": 1.1568206635623703
+    }
+  },
+  {
+    "urutan": 44,
+    "kode": "B.1.10",
+    "parentKode": "B.1",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.1. PEKERJAAN ELEKTRIKAL-ELEKTRONIK",
+    "uraian": "Pek. Pasang Jalur Kabel Tunggal NYM 1x1.5 mm + Perlengkapan (Jalur Lampu Penerangan)",
+    "volume": 580.6,
+    "satuan": "m²'",
+    "bobotJadwalAsli": 1.5938701854474098,
+    "plans": {
+      "5": 0.7969350927237049,
+      "6": 0.7969350927237049
+    }
+  },
+  {
+    "urutan": 45,
+    "kode": "B.1.11",
+    "parentKode": "B.1",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.1. PEKERJAAN ELEKTRIKAL-ELEKTRONIK",
+    "uraian": "Pek. Pasang MCB 25A",
+    "volume": 15.0,
+    "satuan": "Pcs",
+    "bobotJadwalAsli": 0.300976310082341,
+    "plans": {
+      "7": 0.300976310082341
+    }
+  },
+  {
+    "urutan": 46,
+    "kode": "B.1.11",
+    "parentKode": "B.1",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.1. PEKERJAAN ELEKTRIKAL-ELEKTRONIK",
+    "uraian": "Pek. Pasang Manual Cos Handle Breaker Genset 200A",
+    "volume": 1.0,
+    "satuan": "Pcs",
+    "bobotJadwalAsli": 0.4757204016170592,
+    "plans": {
+      "7": 0.4757204016170592
+    }
+  },
+  {
+    "urutan": 47,
+    "kode": "B.1.12",
+    "parentKode": "B.1",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.1. PEKERJAAN ELEKTRIKAL-ELEKTRONIK",
+    "uraian": "Pek. Pasang Ceilling Exhaustfan 25R",
+    "volume": 5.0,
+    "satuan": "Pcs",
+    "bobotJadwalAsli": 0.42671486620170695,
+    "plans": {
+      "8": 0.42671486620170695
+    }
+  },
+  {
+    "urutan": 48,
+    "kode": "B.1.13",
+    "parentKode": "B.1",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.1. PEKERJAAN ELEKTRIKAL-ELEKTRONIK",
+    "uraian": "Pek. Instalasi Nurce Call 21 Titik (Bed Head unit) + Master Nurse Call 24 Channel + Perlengkapan",
+    "volume": 1.0,
+    "satuan": "Ls",
+    "bobotJadwalAsli": 6.932449720831638,
+    "plans": {
+      "6": 2.310816573610546,
+      "7": 2.310816573610546,
+      "8": 2.310816573610546
+    }
+  },
+  {
+    "urutan": 49,
+    "kode": "B.1.14",
+    "parentKode": "B.1",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.1. PEKERJAAN ELEKTRIKAL-ELEKTRONIK",
+    "uraian": "Pek. Pasang Kabel Jaringan Nurse Call + Perlengkepan",
+    "volume": 218.56,
+    "satuan": "m²'",
+    "bobotJadwalAsli": 0.4348633116085431,
+    "plans": {
+      "6": 0.1449544372028477,
+      "7": 0.1449544372028477,
+      "8": 0.1449544372028477
+    }
+  },
+  {
+    "urutan": 50,
+    "kode": "B.1.15",
+    "parentKode": "B.1",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.1. PEKERJAAN ELEKTRIKAL-ELEKTRONIK",
+    "uraian": "Pek. Pasang Pipa Konduit Jalur Listrik, Telp, LAN + TC\nPVC (Wall Ducting)+ PVC Kabel Tray type",
+    "volume": 586.01,
+    "satuan": "m²'",
+    "bobotJadwalAsli": 1.8905462914672977,
+    "plans": {
+      "6": 1.8905462914672977
+    }
+  },
+  {
+    "urutan": 51,
+    "kode": "B.2.1",
+    "parentKode": "B.2",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.2. PEK. PLUMBING",
+    "uraian": "Pek. Pasang Jalur Pipa Air RO, Pipa PVC AW 1/2\" +\nPerlengkapan",
+    "volume": 84.98,
+    "satuan": "m²'",
+    "bobotJadwalAsli": 0.3702571923641377,
+    "plans": {
+      "5": 0.3702571923641377
+    }
+  },
+  {
+    "urutan": 52,
+    "kode": "B.2.2",
+    "parentKode": "B.2",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.2. PEK. PLUMBING",
+    "uraian": "Pek. Pasang Jalur Pipa Air Limbah , Pipa PVC AW 2 1/2\"\n+ Perlengkapan",
+    "volume": 99.98,
+    "satuan": "m²'",
+    "bobotJadwalAsli": 1.198045695131689,
+    "plans": {
+      "5": 1.198045695131689
+    }
+  },
+  {
+    "urutan": 53,
+    "kode": "B.2.3",
+    "parentKode": "B.2",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.2. PEK. PLUMBING",
+    "uraian": "Pek. Pasang Jalur Pipa Air Limbah Closet dan Sloof Sink, Pipa PVC AW 4\" + Perlengkapan",
+    "volume": 16.0,
+    "satuan": "m²'",
+    "bobotJadwalAsli": 0.4795755037364003,
+    "plans": {
+      "5": 0.4795755037364003
+    }
+  },
+  {
+    "urutan": 54,
+    "kode": "B.2.4",
+    "parentKode": "B.2",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.2. PEK. PLUMBING",
+    "uraian": "Pek. Pasang Wastafel Keramik Cuci Tangan +\nPerlengkapan",
+    "volume": 5.0,
+    "satuan": "Pcs",
+    "bobotJadwalAsli": 0.9184370753013302,
+    "plans": {
+      "6": 0.9184370753013302
+    }
+  },
+  {
+    "urutan": 55,
+    "kode": "B.2.5",
+    "parentKode": "B.2",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.2. PEK. PLUMBING",
+    "uraian": "Pek. Pasang Closed Duduk + Perlengkapan",
+    "volume": 1.0,
+    "satuan": "Pcs",
+    "bobotJadwalAsli": 0.3116602035471256,
+    "plans": {
+      "6": 0.3116602035471256
+    }
+  },
+  {
+    "urutan": 56,
+    "kode": "B.2.6",
+    "parentKode": "B.2",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.2. PEK. PLUMBING",
+    "uraian": "Pek. Pasang Sloof Sink Di ruang Gudang Kotor",
+    "volume": 1.0,
+    "satuan": "Pcs",
+    "bobotJadwalAsli": 1.2977724230876058,
+    "plans": {
+      "7": 1.2977724230876058
+    }
+  },
+  {
+    "urutan": 57,
+    "kode": "B.2.7",
+    "parentKode": "B.2",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.2. PEK. PLUMBING",
+    "uraian": "Pek. Pasang Floor Drain di KM/WC dan Gudang Kotor",
+    "volume": 3.0,
+    "satuan": "Pcs",
+    "bobotJadwalAsli": 0.040604586487006177,
+    "plans": {
+      "8": 0.040604586487006177
+    }
+  },
+  {
+    "urutan": 58,
+    "kode": "B.2.8",
+    "parentKode": "B.2",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.2. PEK. PLUMBING",
+    "uraian": "Pek. Pasang Stop Kran Drat Kuningan 1/2\" + Neple Selang 1/2\"-5/8\" drat luar + perlengkapan",
+    "volume": 19.0,
+    "satuan": "Pcs",
+    "bobotJadwalAsli": 0.29928380557233,
+    "plans": {
+      "8": 0.29928380557233
+    }
+  },
+  {
+    "urutan": 59,
+    "kode": "B.2.9",
+    "parentKode": "B.2",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.2. PEK. PLUMBING",
+    "uraian": "Pek. Pasang Kran Air Biasa 1/2\" + Perlengkapan",
+    "volume": 2.0,
+    "satuan": "Pcs",
+    "bobotJadwalAsli": 0.017501976934054385,
+    "plans": {
+      "8": 0.017501976934054385
+    }
+  },
+  {
+    "urutan": 60,
+    "kode": "B.3.1",
+    "parentKode": "B.3",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.3. PEK. LAIN-LAIN",
+    "uraian": "Pek. Pasang Rel Gordeng Menggunakan Stainles Pipe 1\"",
+    "volume": 82.64,
+    "satuan": "m²'",
+    "bobotJadwalAsli": 2.410605623050424,
+    "plans": {
+      "9": 2.410605623050424
+    }
+  },
+  {
+    "urutan": 61,
+    "kode": "B.3.2",
+    "parentKode": "B.3",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.3. PEK. LAIN-LAIN",
+    "uraian": "Pek. Gorden PVC Non Porosif anti Bakteri dan Noda",
+    "volume": 247.5,
+    "satuan": "m²²",
+    "bobotJadwalAsli": 4.125465991598534,
+    "plans": {
+      "9": 4.125465991598534
+    }
+  },
+  {
+    "urutan": 62,
+    "kode": "B.3.3",
+    "parentKode": "B.3",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.3. PEK. LAIN-LAIN",
+    "uraian": "Pek. Pasang Jalur Pipa Air Limbah Closet dan Sloof Sink, Pipa PVC AW 4\" + Perlengkapan",
+    "volume": 1.0,
+    "satuan": "Ls",
+    "bobotJadwalAsli": 1.8335404407104596,
+    "plans": {
+      "7": 1.8335404407104596
+    }
+  },
+  {
+    "urutan": 63,
+    "kode": "B.3.4",
+    "parentKode": "B.3",
+    "kategori": "B. MECHANICAL-ELEKTRIKAL-ELEKTRONIK-PLUMBING WORK",
+    "subKategori": "B.3. PEK. LAIN-LAIN",
+    "uraian": "Pek. Pasang Wastafel Keramik Cuci Tangan +\nPerlengkapan",
+    "volume": 1.0,
+    "satuan": "Ls",
+    "bobotJadwalAsli": 0.7625861378409412,
+    "plans": {
+      "7": 0.7625861378409412
+    }
+  },
+  {
+    "urutan": 64,
+    "kode": "C.1",
+    "parentKode": "C.1",
+    "kategori": "C. PEKERJAAN AKHIR",
+    "subKategori": "B.3. PEK. LAIN-LAIN",
+    "uraian": "Dokumentasi",
+    "volume": 1.0,
+    "satuan": "Ls",
+    "bobotJadwalAsli": 0.10834557149652715,
+    "plans": {
+      "9": 0.10834557149652715
+    }
+  },
+  {
+    "urutan": 65,
+    "kode": "C.2",
+    "parentKode": "C.2",
+    "kategori": "C. PEKERJAAN AKHIR",
+    "subKategori": "B.3. PEK. LAIN-LAIN",
+    "uraian": "Pembersihan Akhir",
+    "volume": 1.0,
+    "satuan": "Ls",
+    "bobotJadwalAsli": 0.2500282419150626,
+    "plans": {
+      "9": 0.2500282419150626
+    }
+  }
+]

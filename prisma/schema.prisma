@@ -1,0 +1,194 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Project {
+  id                  String        @id @default(cuid())
+  nama                String
+  lokasi              String
+  client              String
+  kontraktor          String        @default("PT Mitra Bangun Mahakarya")
+  nilaiKontrak        Float
+  tanggalMulai        DateTime
+  tanggalBatasKontrak DateTime      // 13 Nov 2026
+  tanggalAkhirBaseline DateTime     // 15 Nov 2026
+  hariKerja           Int           @default(60)
+  dendaPersenPerHari  Float         @default(0.1) // 0.1% per hari
+  maksDendaPersen     Float         @default(10.0) // maks 10%
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+
+  periods             Period[]
+  rabItems            RabItem[]
+  dailyReports        DailyReport[]
+}
+
+model Period {
+  id                    String    @id @default(cuid())
+  projectId             String
+  project               Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  mingguKe              Int
+  tanggalMulai          DateTime
+  tanggalSelesai        DateTime
+  bobotRencana          Float
+  bobotKumulatifRencana Float
+  nilaiKumulatifRencana Float
+
+  rabPlans              RabPlan[]
+}
+
+model RabItem {
+  id                 String          @id @default(cuid())
+  projectId          String
+  project            Project         @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  kode               String          // e.g. A.1.1, B.1.13
+  parentKode         String?         // e.g. A.1, B.1
+  kategori           String          // e.g. A. CIVIL WORK, B. MEP WORK
+  subKategori        String          // e.g. A.1 Pekerjaan Persiapan
+  uraian             String
+  volume             Float
+  satuan             String
+  hargaUpah          Float           @default(0)
+  hargaBahan         Float           @default(0)
+  totalHarga         Float
+  bobotPersen        Float           // Bobot dari RAB (nilai / grand total)
+  bobotJadwalAsli    Float           // Bobot dari Time Schedule resmi
+  selisihBobot       Float           // bobotJadwalAsli - bobotPersen
+  statusRekonsiliasi String          @default("PENDING") // PENDING, VERIFIED, CLARIFIED
+  urutan             Int
+
+  rabPlans           RabPlan[]
+  progressEntries    ProgressEntry[]
+  photos             Photo[]
+}
+
+model RabPlan {
+  id                 String    @id @default(cuid())
+  rabItemId          String
+  rabItem            RabItem   @relation(fields: [rabItemId], references: [id], onDelete: Cascade)
+  periodId           String
+  period             Period    @relation(fields: [periodId], references: [id], onDelete: Cascade)
+  porsiRencanaPersen Float     // e.g. 50%
+  volumeRencana      Float
+}
+
+model DailyReport {
+  id                 String          @id @default(cuid())
+  projectId          String
+  project            Project         @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  tanggal            DateTime
+  hariKerjaKe        Int
+  cuacaPagi          String          @default("Cerah") // Cerah, Berawan, Hujan Ringan, Hujan Deras
+  cuacaSiang         String          @default("Cerah")
+  cuacaSore          String          @default("Cerah")
+  jamMulai           String          @default("08:00")
+  jamSelesai         String          @default("17:00")
+  jamTerhentiCuaca   Float           @default(0) // Jam berhenti karena cuaca (bukti force majeure)
+  status             String          @default("DRAFT") // DRAFT, SUBMITTED, APPROVED, REVISI
+  isBackdated        Boolean         @default(false)
+  catatanUmum        String?
+  rencanaBesok       String?
+  catatanK3          String?
+  adaInsidenK3       Boolean         @default(false)
+  dibuatOlehId       String?
+  dibuatOleh         User?           @relation("DibuatOleh", fields: [dibuatOlehId], references: [id])
+  disetujuiOlehId    String?
+  disetujuiOleh      User?           @relation("DisetujuiOleh", fields: [disetujuiOlehId], references: [id])
+  disetujuiPada      DateTime?
+  catatanRevisi      String?
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+
+  progressEntries    ProgressEntry[]
+  manpowers          Manpower[]
+  equipments         Equipment[]
+  materialLogs       MaterialLog[]
+  issues             Issue[]
+  photos             Photo[]
+}
+
+model ProgressEntry {
+  id                String       @id @default(cuid())
+  dailyReportId     String
+  dailyReport       DailyReport  @relation(fields: [dailyReportId], references: [id], onDelete: Cascade)
+  rabItemId         String
+  rabItem           RabItem      @relation(fields: [rabItemId], references: [id])
+  volumeHariIni     Float
+  lokasiKerja       String?      // e.g. Ruang HD Isolasi, Koridor Nurse Station
+  isPekerjaanTambah Boolean      @default(false)
+  catatan           String?
+}
+
+model Manpower {
+  id            String      @id @default(cuid())
+  dailyReportId String
+  dailyReport   DailyReport @relation(fields: [dailyReportId], references: [id], onDelete: Cascade)
+  kategori      String      // Mandor, Tukang Sipil, Tukang Kayu, Tukang Besi, Tukang Listrik, Tukang Plumbing, Kenek/Helper, Safety Officer, Lainnya
+  jumlah        Int
+}
+
+model Equipment {
+  id            String      @id @default(cuid())
+  dailyReportId String
+  dailyReport   DailyReport @relation(fields: [dailyReportId], references: [id], onDelete: Cascade)
+  namaAlat      String
+  jumlah        Int
+  status        String      @default("BEROPERASI") // BEROPERASI, STANDBY, RUSAK
+}
+
+model MaterialLog {
+  id            String      @id @default(cuid())
+  dailyReportId String
+  dailyReport   DailyReport @relation(fields: [dailyReportId], references: [id], onDelete: Cascade)
+  namaMaterial  String
+  jumlah        Float
+  satuan        String
+  noSuratJalan  String?
+  pemasok       String?
+  fotoSuratJalan String?
+}
+
+model Issue {
+  id            String      @id @default(cuid())
+  dailyReportId String
+  dailyReport   DailyReport @relation(fields: [dailyReportId], references: [id], onDelete: Cascade)
+  kategori      String      // Cuaca, Material Terlambat, Tenaga Kerja, Instruksi RS/AbadiNusa, Akses RS, Listrik/Air, Lainnya
+  deskripsi     String
+  dampakJam     Float       @default(0)
+  tindakan      String?
+  status        String      @default("OPEN") // OPEN, CLOSED
+  pic           String?
+  ditutupPada   DateTime?
+}
+
+model Photo {
+  id            String       @id @default(cuid())
+  dailyReportId String
+  dailyReport   DailyReport  @relation(fields: [dailyReportId], references: [id], onDelete: Cascade)
+  rabItemId     String?
+  rabItem       RabItem?     @relation(fields: [rabItemId], references: [id])
+  url           String
+  thumbUrl      String?
+  kategori      String       @default("PROGRES") // PROGRES, MATERIAL, K3, KENDALA, BEFORE_AFTER
+  keterangan    String?
+  lat           Float?
+  lng           Float?
+  diambilPada   DateTime     @default(now())
+}
+
+model User {
+  id                   String        @id @default(cuid())
+  nama                 String
+  email                String        @unique
+  passwordHash         String
+  role                 String        @default("FIELD") // FIELD, MANDOR, PM, ADMIN, VIEWER
+  createdAt            DateTime      @default(now())
+
+  laporanDibuat        DailyReport[] @relation("DibuatOleh")
+  laporanDisetujui     DailyReport[] @relation("DisetujuiOleh")
+}
