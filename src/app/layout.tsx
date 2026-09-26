@@ -37,10 +37,10 @@ export default function RootLayout({
     <html lang="id" className={inter.variable}>
       <body className={`${inter.className} min-h-screen flex flex-col bg-slate-50 text-slate-900 antialiased selection:bg-amber-100 selection:text-amber-900`}>
         <Navbar />
-        <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 pb-24 md:pb-8">
+        <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 pb-24 lg:pb-8">
           {children}
         </main>
-        <footer className="border-t border-slate-200 bg-white py-4 text-center text-xs text-slate-500 hidden md:block no-print">
+        <footer className="border-t border-slate-200 bg-white py-4 text-center text-xs text-slate-500 hidden lg:block no-print">
           &copy; {new Date().getFullYear()} PT Mitra Bangun Mahakarya &bull; Proyek Renovasi Hemodialisa RS Pertamina Prabumulih
         </footer>
       </body>
