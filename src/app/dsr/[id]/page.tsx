@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
-import { getDsrById, approveDsr, requestRevisionDsr } from '@/app/actions/dsr';
+import { getDsrById } from '@/app/actions/dsr';
+import { getCurrentUser } from '@/app/actions/auth';
 import { DsrDetailClient } from './DsrDetailClient';
 
 export const dynamic = 'force-dynamic';
@@ -11,11 +11,14 @@ export default async function DsrDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const report = await getDsrById(id);
+  const [report, currentUser] = await Promise.all([
+    getDsrById(id),
+    getCurrentUser(),
+  ]);
 
   if (!report) {
     notFound();
   }
 
-  return <DsrDetailClient report={report} />;
+  return <DsrDetailClient report={report} currentUser={currentUser} />;
 }

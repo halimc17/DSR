@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getDsrList } from '@/app/actions/dsr';
+import { getCurrentUser } from '@/app/actions/auth';
 import { DeleteDsrButton } from '@/components/dsr/DeleteDsrButton';
 import { 
   PlusCircle, 
@@ -16,7 +17,10 @@ import {
 export const dynamic = 'force-dynamic';
 
 export default async function DsrListPage() {
-  const dsrList = await getDsrList();
+  const [dsrList, currentUser] = await Promise.all([
+    getDsrList(),
+    getCurrentUser()
+  ]);
 
   return (
     <div className="space-y-6">
@@ -131,11 +135,13 @@ export default async function DsrListPage() {
                     {dr.disetujuiPada ? 'Disetujui PM' : 'Menunggu Approval'}
                   </span>
                   <div className="flex items-center space-x-2">
-                    <DeleteDsrButton
-                      id={dr.id}
-                      reportTitle={`Laporan Hari ke-${dr.hariKerjaKe} (${dateStr})`}
-                      variant="icon"
-                    />
+                    {currentUser && (currentUser.role === 'ADMIN' || currentUser.role === 'PM') && (
+                      <DeleteDsrButton
+                        id={dr.id}
+                        reportTitle={`Laporan Hari ke-${dr.hariKerjaKe} (${dateStr})`}
+                        variant="icon"
+                      />
+                    )}
                     <Link
                       href={`/dsr/${dr.id}`}
                       className="inline-flex items-center text-xs font-bold text-slate-900 group-hover:text-blue-700"

@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache';
 import { prisma } from '@/lib/prisma';
 import type { DsrFormData, RabItemData } from '@/lib/types';
 import { calculateDailyPenalty, PROJECT_CONFIG } from '@/lib/calculations';
+import { getSessionUser } from '@/lib/auth';
 
 const PROJECT_ID = 'rs-pertamina-prabumulih';
 
@@ -221,6 +222,8 @@ export async function saveDsr(data: DsrFormData) {
       await tx.issue.deleteMany({ where: { dailyReportId: reportId } });
       await tx.photo.deleteMany({ where: { dailyReportId: reportId } });
 
+      const currentUser = await getSessionUser();
+
       await tx.dailyReport.update({
         where: { id: reportId },
         data: {
@@ -238,9 +241,11 @@ export async function saveDsr(data: DsrFormData) {
           rencanaBesok: data.rencanaBesok,
           catatanK3: data.catatanK3,
           adaInsidenK3: data.adaInsidenK3,
+          ...(currentUser ? { dibuatOlehId: currentUser.id } : {}),
         },
       });
     } else {
+      const currentUser = await getSessionUser();
       const created = await tx.dailyReport.create({
         data: {
           projectId: PROJECT_ID,
@@ -258,6 +263,7 @@ export async function saveDsr(data: DsrFormData) {
           rencanaBesok: data.rencanaBesok,
           catatanK3: data.catatanK3,
           adaInsidenK3: data.adaInsidenK3,
+          dibuatOlehId: currentUser?.id || null,
         },
       });
       reportId = created.id;
@@ -350,12 +356,19 @@ export async function saveDsr(data: DsrFormData) {
 }
 
 export async function approveDsr(id: string) {
-  const pm = await prisma.user.findFirst({ where: { role: 'PM' } });
+  const currentUser = await getSessionUser();
+  if (!currentUser || (currentUser.role !== 'PM' && currentUser.role !== 'ADMIN')) {
+    return {
+      success: false,
+      error: 'Akses ditolak. Hanya Project Manager atau Administrator yang dapat menyetujui laporan.',
+    };
+  }
+
   await prisma.dailyReport.update({
     where: { id },
     data: {
       status: 'APPROVED',
-      disetujuiOlehId: pm?.id,
+      disetujuiOlehId: currentUser.id,
       disetujuiPada: new Date(),
     },
   });
@@ -366,6 +379,14 @@ export async function approveDsr(id: string) {
 }
 
 export async function requestRevisionDsr(id: string, notes: string) {
+  const currentUser = await getSessionUser();
+  if (!currentUser || (currentUser.role !== 'PM' && currentUser.role !== 'ADMIN')) {
+    return {
+      success: false,
+      error: 'Akses ditolak. Hanya Project Manager atau Administrator yang dapat meminta revisi.',
+    };
+  }
+
   await prisma.dailyReport.update({
     where: { id },
     data: {
@@ -379,6 +400,14 @@ export async function requestRevisionDsr(id: string, notes: string) {
 }
 
 export async function deleteDsr(id: string) {
+  const currentUser = await getSessionUser();
+  if (!currentUser || (currentUser.role !== 'ADMIN' && currentUser.role !== 'PM')) {
+    return {
+      success: false,
+      error: 'Akses ditolak. Hanya Administrator atau Project Manager yang dapat menghapus laporan.',
+    };
+  }
+
   await prisma.dailyReport.delete({
     where: { id },
   });

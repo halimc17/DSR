@@ -24,14 +24,23 @@ import {
 
 interface DsrDetailClientProps {
   report: any;
+  currentUser?: {
+    id: string;
+    nama: string;
+    email: string;
+    role: string;
+  } | null;
 }
 
-export function DsrDetailClient({ report }: DsrDetailClientProps) {
+export function DsrDetailClient({ report, currentUser }: DsrDetailClientProps) {
   const router = useRouter();
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isApproving, setIsApproving] = useState(false);
   const [isRevisionInputOpen, setIsRevisionInputOpen] = useState(false);
   const [revisionNotes, setRevisionNotes] = useState('');
+
+  const canApprove = currentUser && (currentUser.role === 'PM' || currentUser.role === 'ADMIN');
+  const canDelete = currentUser && (currentUser.role === 'ADMIN' || currentUser.role === 'PM');
 
   const handleApprove = async () => {
     if (!confirm('Apakah Anda yakin menyetujui laporan DSR ini? Laporan yang disetujui akan terkunci dan masuk ke perhitungan klaim termin.')) {
@@ -128,16 +137,18 @@ export function DsrDetailClient({ report }: DsrDetailClientProps) {
             Cetak / Simpan PDF
           </button>
 
-          {/* Delete DSR */}
-          <DeleteDsrButton
-            id={report.id}
-            reportTitle={`Laporan DSR Hari ke-${report.hariKerjaKe}`}
-            redirectTo="/dsr"
-            variant="button"
-          />
+          {/* Delete DSR (Admin & PM only) */}
+          {canDelete && (
+            <DeleteDsrButton
+              id={report.id}
+              reportTitle={`Laporan DSR Hari ke-${report.hariKerjaKe}`}
+              redirectTo="/dsr"
+              variant="button"
+            />
+          )}
 
           {/* PM Approval buttons */}
-          {report.status === 'SUBMITTED' && (
+          {report.status === 'SUBMITTED' && canApprove && (
             <>
               <button
                 onClick={handleApprove}

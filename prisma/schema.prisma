@@ -186,8 +186,11 @@ model User {
   nama                 String
   email                String        @unique
   passwordHash         String
-  role                 String        @default("FIELD") // FIELD, MANDOR, PM, ADMIN, VIEWER
+  role                 String        @default("FIELD") // FIELD, PM, ADMIN
+  isActive             Boolean       @default(true)
+  telepon              String?
   createdAt            DateTime      @default(now())
+  updatedAt            DateTime      @updatedAt @default(now())
 
   laporanDibuat        DailyReport[] @relation("DibuatOleh")
   laporanDisetujui     DailyReport[] @relation("DisetujuiOleh")
