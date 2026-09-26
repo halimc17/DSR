@@ -35,13 +35,17 @@ interface DsrFormProps {
 }
 
 const DEFAULT_MANPOWER_CATEGORIES = [
+  'Pelaksana',
   'Mandor',
+  'Kepala Tukang',
+  'Tukang',
   'Tukang Sipil / Batu',
   'Tukang Kayu / Partisi',
   'Tukang Besi / Baja',
   'Tukang Listrik (MEP)',
   'Tukang Plumbing (Air/RO)',
   'Kenek / Helper',
+  'HSE',
   'Safety Officer (K3)',
 ];
 
@@ -78,7 +82,22 @@ export function DsrForm({ rabItems, initialData }: DsrFormProps) {
   // Form state
   const todayStr = new Date().toISOString().split('T')[0];
   const [formData, setFormData] = useState<DsrFormData>(() => {
-    if (initialData) return initialData;
+    if (initialData) {
+      const existingMap = new Map(initialData.manpowers.map((m) => [m.kategori, m.jumlah]));
+      const merged = DEFAULT_MANPOWER_CATEGORIES.map((k) => ({
+        kategori: k,
+        jumlah: existingMap.get(k) ?? 0,
+      }));
+      initialData.manpowers.forEach((m) => {
+        if (!DEFAULT_MANPOWER_CATEGORIES.includes(m.kategori)) {
+          merged.push(m);
+        }
+      });
+      return {
+        ...initialData,
+        manpowers: merged,
+      };
+    }
     return {
       tanggal: todayStr,
       hariKerjaKe: getWorkdayNumber(new Date()),
@@ -155,6 +174,31 @@ export function DsrForm({ rabItems, initialData }: DsrFormProps) {
         m.kategori === kategori ? { ...m, jumlah: Math.max(0, m.jumlah + delta) } : m
       ),
     }));
+  };
+
+  const setManpowerCount = (kategori: string, val: number) => {
+    setFormData((prev) => ({
+      ...prev,
+      manpowers: prev.manpowers.map((m) =>
+        m.kategori === kategori ? { ...m, jumlah: Math.max(0, val) } : m
+      ),
+    }));
+  };
+
+  const [isAddingManpower, setIsAddingManpower] = useState(false);
+  const [newManpowerName, setNewManpowerName] = useState('');
+
+  const handleAddCustomManpower = () => {
+    const trimmed = newManpowerName.trim();
+    if (!trimmed) return;
+    if (!formData.manpowers.some((m) => m.kategori.toLowerCase() === trimmed.toLowerCase())) {
+      setFormData((prev) => ({
+        ...prev,
+        manpowers: [...prev.manpowers, { kategori: trimmed, jumlah: 0 }],
+      }));
+    }
+    setNewManpowerName('');
+    setIsAddingManpower(false);
   };
 
   const totalHeadcount = formData.manpowers.reduce((acc, curr) => acc + curr.jumlah, 0);
@@ -460,9 +504,26 @@ export function DsrForm({ rabItems, initialData }: DsrFormProps) {
                 key={m.kategori}
                 className="flex items-center justify-between p-3 rounded-xl border border-slate-200 bg-slate-50"
               >
-                <span className="text-xs font-bold text-slate-800">{m.kategori}</span>
+                <div className="flex items-center space-x-1.5 min-w-0 pr-2">
+                  <span className="text-xs font-bold text-slate-800 truncate">{m.kategori}</span>
+                  {!DEFAULT_MANPOWER_CATEGORIES.includes(m.kategori) && (
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          manpowers: prev.manpowers.filter((x) => x.kategori !== m.kategori),
+                        }))
+                      }
+                      className="text-slate-400 hover:text-rose-600 p-0.5"
+                      title="Hapus kategori kustom"
+                    >
+                      <Trash2 className="w-3 h-3" />
+                    </button>
+                  )}
+                </div>
                 {/* Finger-friendly 44px min tap targets */}
-                <div className="flex items-center space-x-1.5 sm:space-x-2">
+                <div className="flex items-center space-x-1.5 sm:space-x-2 flex-shrink-0">
                   <button
                     type="button"
                     onClick={() => updateManpower(m.kategori, -1)}
@@ -470,7 +531,13 @@ export function DsrForm({ rabItems, initialData }: DsrFormProps) {
                   >
                     -
                   </button>
-                  <span className="w-8 text-center text-sm font-semibold text-slate-900">{m.jumlah}</span>
+                  <input
+                    type="number"
+                    min="0"
+                    value={m.jumlah}
+                    onChange={(e) => setManpowerCount(m.kategori, Math.max(0, parseInt(e.target.value) || 0))}
+                    className="w-10 text-center text-sm font-semibold text-slate-900 bg-white border border-slate-200 rounded-lg py-1 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+                  />
                   <button
                     type="button"
                     onClick={() => updateManpower(m.kategori, 1)}
@@ -481,6 +548,54 @@ export function DsrForm({ rabItems, initialData }: DsrFormProps) {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Custom category adder */}
+          <div className="pt-2 border-t border-slate-100">
+            {!isAddingManpower ? (
+              <button
+                type="button"
+                onClick={() => setIsAddingManpower(true)}
+                className="inline-flex items-center text-xs font-semibold text-blue-600 hover:text-blue-800 transition-colors"
+              >
+                <Plus className="w-3.5 h-3.5 mr-1" />
+                Tambah Kategori Tenaga Kerja Lainnya
+              </button>
+            ) : (
+              <div className="flex items-center space-x-2 max-w-sm">
+                <input
+                  type="text"
+                  placeholder="Nama jabatan / kategori baru..."
+                  value={newManpowerName}
+                  onChange={(e) => setNewManpowerName(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      handleAddCustomManpower();
+                    }
+                  }}
+                  className="flex-1 px-3 py-1.5 border border-slate-300 rounded-lg text-xs font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  autoFocus
+                />
+                <button
+                  type="button"
+                  onClick={handleAddCustomManpower}
+                  className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-semibold shadow-sm"
+                >
+                  Tambah
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsAddingManpower(false);
+                    setNewManpowerName('');
+                  }}
+                  className="px-2 py-1.5 text-slate-500 hover:text-slate-700 text-xs"
+                >
+                  Batal
+                </button>
+              </div>
+            )}
           </div>
         </div>
       )}
