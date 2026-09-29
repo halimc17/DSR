@@ -1,5 +1,5 @@
 import crypto from 'node:crypto';
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 import type { SessionUser } from '@/types/auth';
 
 export type { SessionUser };
@@ -7,11 +7,14 @@ export type { SessionUser };
 const SESSION_COOKIE_NAME = 'dsr_session';
 const SESSION_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
 
-// Derive a secret key for session signatures
-const SECRET_KEY =
-  process.env.AUTH_SECRET ||
-  process.env.DATABASE_URL ||
-  'dsr-rs-pertamina-prabumulih-secret-key-2026';
+// Derive a secret key for session signatures dynamically
+function getSecretKey(): string {
+  return (
+    process.env.AUTH_SECRET ||
+    process.env.DATABASE_URL ||
+    'dsr-rs-pertamina-prabumulih-secret-key-2026'
+  );
+}
 
 /**
  * Hash password securely with scrypt + random salt
@@ -41,12 +44,45 @@ export function verifyPassword(password: string, storedHash: string): boolean {
 }
 
 /**
+ * Determine whether connection is HTTPS.
+ * Over plain HTTP (such as Coolify direct IP:port or domains without SSL),
+ * browsers strictly drop cookies having `secure: true`.
+ * In contrast, cookies without `secure: true` are accepted on both HTTP and HTTPS.
+ */
+async function isSecureConnection(): Promise<boolean> {
+  // Explicit override via environment variable if desired
+  if (process.env.COOKIE_SECURE === 'false') return false;
+  if (process.env.COOKIE_SECURE === 'true') return true;
+
+  try {
+    const headerList = await headers();
+    const proto = headerList.get('x-forwarded-proto');
+    if (proto) {
+      return proto.toLowerCase().split(',')[0].trim() === 'https';
+    }
+    const origin = headerList.get('origin') || headerList.get('referer');
+    if (origin) {
+      return origin.startsWith('https://');
+    }
+    const host = headerList.get('host') || '';
+    if (host.includes('localhost') || /^\d+\.\d+\.\d+\.\d+/.test(host)) {
+      return false;
+    }
+  } catch {
+    // headers() might not be available in some contexts
+  }
+
+  return false;
+}
+
+/**
  * Create a signed token payload
  */
 function signToken(payload: object): string {
+  const secretKey = getSecretKey();
   const data = Buffer.from(JSON.stringify(payload)).toString('base64url');
   const signature = crypto
-    .createHmac('sha256', SECRET_KEY)
+    .createHmac('sha256', secretKey)
     .update(data)
     .digest('base64url');
   return `${data}.${signature}`;
@@ -60,12 +96,16 @@ function verifyToken<T>(token: string): T | null {
     const [data, signature] = token.split('.');
     if (!data || !signature) return null;
 
+    const secretKey = getSecretKey();
     const expectedSignature = crypto
-      .createHmac('sha256', SECRET_KEY)
+      .createHmac('sha256', secretKey)
       .update(data)
       .digest('base64url');
 
-    if (!crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expectedSignature))) {
+    const sigBuf = Buffer.from(signature);
+    const expBuf = Buffer.from(expectedSignature);
+
+    if (sigBuf.length !== expBuf.length || !crypto.timingSafeEqual(sigBuf, expBuf)) {
       return null;
     }
 
@@ -89,9 +129,11 @@ export async function createSession(user: SessionUser): Promise<void> {
     exp: Date.now() + SESSION_MAX_AGE * 1000,
   });
 
+  const secure = await isSecureConnection();
+
   cookieStore.set(SESSION_COOKIE_NAME, token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    secure,
     sameSite: 'lax',
     maxAge: SESSION_MAX_AGE,
     path: '/',
@@ -126,10 +168,11 @@ export async function getSessionUser(): Promise<SessionUser | null> {
  */
 export async function destroySession(): Promise<void> {
   const cookieStore = await cookies();
+  const secure = await isSecureConnection();
   cookieStore.delete(SESSION_COOKIE_NAME);
   cookieStore.set(SESSION_COOKIE_NAME, '', {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    secure,
     sameSite: 'lax',
     maxAge: 0,
     expires: new Date(0),

@@ -31,8 +31,8 @@ function LoginForm() {
     setIsLoading(false);
 
     if (res.success) {
-      router.push(redirectUrl);
-      router.refresh();
+      // Force hard navigation so browser immediately attaches cookies and resets all server/client states
+      window.location.href = redirectUrl;
     } else {
       setError(res.error || 'Login gagal.');
     }

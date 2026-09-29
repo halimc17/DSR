@@ -23,13 +23,21 @@ import {
 import { getCurrentUser, logoutUser } from '@/app/actions/auth';
 import type { SessionUser } from '@/types/auth';
 
-export function Navbar() {
+interface NavbarProps {
+  initialUser?: SessionUser | null;
+}
+
+export function Navbar({ initialUser = null }: NavbarProps) {
   const pathname = usePathname();
   const router = useRouter();
 
-  const [user, setUser] = useState<SessionUser | null>(null);
+  const [user, setUser] = useState<SessionUser | null>(initialUser);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    setUser(initialUser);
+  }, [initialUser]);
 
   useEffect(() => {
     getCurrentUser().then(setUser);

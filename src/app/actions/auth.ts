@@ -55,9 +55,7 @@ export async function loginUser(email: string, password: string): Promise<{
 
     await createSession(sessionUser);
 
-    revalidatePath('/');
-    revalidatePath('/dsr');
-    revalidatePath('/users');
+    revalidatePath('/', 'layout');
 
     return { success: true, user: sessionUser };
   } catch (err: any) {
@@ -68,9 +66,7 @@ export async function loginUser(email: string, password: string): Promise<{
 
 export async function logoutUser(): Promise<{ success: boolean }> {
   await destroySession();
-  revalidatePath('/');
-  revalidatePath('/dsr');
-  revalidatePath('/users');
+  revalidatePath('/', 'layout');
   return { success: true };
 }
 
