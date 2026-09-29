@@ -21,7 +21,7 @@ import {
   Crown
 } from 'lucide-react';
 import { getCurrentUser, logoutUser } from '@/app/actions/auth';
-import type { SessionUser } from '@/lib/auth';
+import type { SessionUser } from '@/types/auth';
 
 export function Navbar() {
   const pathname = usePathname();

@@ -40,7 +40,11 @@ function LoginForm() {
 
   const handleQuickLogin = (demoEmail: string) => {
     setEmail(demoEmail);
-    setPassword('password123');
+    if (demoEmail === 'admin@mbm.co.id') {
+      setPassword('K4lil4791355R');
+    } else {
+      setPassword('password123');
+    }
     setError(null);
   };
 

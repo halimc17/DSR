@@ -1,12 +1,8 @@
 import crypto from 'node:crypto';
 import { cookies } from 'next/headers';
+import type { SessionUser } from '@/types/auth';
 
-export interface SessionUser {
-  id: string;
-  nama: string;
-  email: string;
-  role: 'ADMIN' | 'PM' | 'FIELD' | string;
-}
+export type { SessionUser };
 
 const SESSION_COOKIE_NAME = 'dsr_session';
 const SESSION_MAX_AGE = 60 * 60 * 24 * 7; // 7 days

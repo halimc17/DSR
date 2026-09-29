@@ -23,7 +23,7 @@ import {
 import { UserModal } from './UserModal';
 import { ResetPasswordModal } from './ResetPasswordModal';
 import { toggleUserStatus, deleteUser } from '@/app/actions/user';
-import { SessionUser } from '@/lib/auth';
+import type { SessionUser } from '@/types/auth';
 
 interface UserData {
   id: string;
