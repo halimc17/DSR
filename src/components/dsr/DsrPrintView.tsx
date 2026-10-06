@@ -269,7 +269,7 @@ export function DsrPrintView({ report }: DsrPrintViewProps) {
               </span>
             )}
           </div>
-          <p className="font-bold border-t border-slate-400 mx-6 pt-1">Kingking Firdaus ST</p>
+          <p className="font-bold border-t border-slate-400 mx-6 pt-1">Project Manager</p>
         </div>
 
         <div>
