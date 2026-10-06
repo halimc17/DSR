@@ -318,7 +318,9 @@ export function DsrForm({ rabItems, initialData }: DsrFormProps) {
       <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <div className="flex items-center space-x-2">
-            <h1 className="text-lg sm:text-xl font-semibold text-slate-900">Form Daily Site Report</h1>
+            <h1 className="text-lg sm:text-xl font-semibold text-slate-900">
+              {formData.id ? `Edit Laporan DSR Hari ke-${formData.hariKerjaKe}` : 'Form Daily Site Report'}
+            </h1>
             {formData.isBackdated && (
               <span className="text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-200">
                 Backdate
@@ -1265,7 +1267,7 @@ export function DsrForm({ rabItems, initialData }: DsrFormProps) {
             className="flex-1 inline-flex items-center justify-center px-3 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-xs sm:text-sm shadow-md active:scale-95 transition-all"
           >
             <Send className="w-4 h-4 mr-1.5" />
-            {isSubmitting ? 'Menyimpan...' : 'Submit Laporan'}
+            {isSubmitting ? 'Menyimpan...' : formData.id ? 'Perbarui Laporan' : 'Submit Laporan'}
           </button>
         </div>
       </div>

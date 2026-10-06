@@ -504,6 +504,53 @@ export async function approveDsr(id: string) {
   return { success: true };
 }
 
+export async function undoApproveDsr(id: string) {
+  const currentUser = await getSessionUser();
+  if (!currentUser || currentUser.role !== 'ADMIN') {
+    return {
+      success: false,
+      error: 'Akses ditolak. Fitur batalkan persetujuan (Undo Approve) hanya dapat dilakukan oleh Administrator.',
+    };
+  }
+
+  const existing = await prisma.dailyReport.findUnique({
+    where: { id },
+  });
+
+  if (!existing) {
+    return {
+      success: false,
+      error: 'Laporan DSR tidak ditemukan.',
+    };
+  }
+
+  if (existing.status !== 'APPROVED') {
+    return {
+      success: false,
+      error: 'Laporan ini tidak dalam status APPROVED.',
+    };
+  }
+
+  await prisma.dailyReport.update({
+    where: { id },
+    data: {
+      status: 'SUBMITTED',
+      disetujuiOlehId: null,
+      disetujuiPada: null,
+    },
+  });
+
+  revalidatePath(`/dsr/${id}`);
+  revalidatePath(`/dsr/${id}/edit`);
+  revalidatePath('/dsr');
+  revalidatePath('/');
+  revalidatePath('/progress');
+  revalidatePath('/rab');
+  revalidatePath('/termin');
+
+  return { success: true };
+}
+
 export async function requestRevisionDsr(id: string, notes: string) {
   const currentUser = await getSessionUser();
   if (!currentUser || (currentUser.role !== 'PM' && currentUser.role !== 'ADMIN')) {

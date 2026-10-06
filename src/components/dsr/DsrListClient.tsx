@@ -361,10 +361,19 @@ export function DsrListClient({ dsrList, currentUser }: DsrListClientProps) {
                         <div className="flex items-center justify-center space-x-1">
                           <Link
                             href={`/dsr/${dr.id}`}
-                            className="inline-flex items-center px-2.5 py-1 rounded-lg bg-slate-900 text-white text-[11px] font-semibold hover:bg-slate-800 transition-colors"
+                            className="inline-flex items-center px-2 py-1 rounded-lg bg-slate-900 text-white text-[11px] font-semibold hover:bg-slate-800 transition-colors"
                           >
                             Detail
                           </Link>
+                          {dr.status !== 'APPROVED' && (
+                            <Link
+                              href={`/dsr/${dr.id}/edit`}
+                              className="inline-flex items-center px-2 py-1 rounded-lg bg-blue-50 text-blue-700 text-[11px] font-semibold hover:bg-blue-100 transition-colors"
+                              title="Edit Laporan"
+                            >
+                              Edit
+                            </Link>
+                          )}
                           {canManage && (
                             <DeleteDsrButton
                               id={dr.id}
@@ -462,6 +471,14 @@ export function DsrListClient({ dsrList, currentUser }: DsrListClientProps) {
                     {dr.disetujuiPada ? 'Disetujui PM' : 'Menunggu Approval'}
                   </span>
                   <div className="flex items-center space-x-2">
+                    {dr.status !== 'APPROVED' && (
+                      <Link
+                        href={`/dsr/${dr.id}/edit`}
+                        className="inline-flex items-center text-xs font-semibold text-blue-700 hover:text-blue-900 hover:underline"
+                      >
+                        Edit
+                      </Link>
+                    )}
                     {canManage && (
                       <DeleteDsrButton
                         id={dr.id}

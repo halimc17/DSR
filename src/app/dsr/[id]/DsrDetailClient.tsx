@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { DsrPrintView } from '@/components/dsr/DsrPrintView';
 import { WhatsAppShareModal } from '@/components/dsr/WhatsAppShareModal';
 import { DeleteDsrButton } from '@/components/dsr/DeleteDsrButton';
-import { approveDsr, requestRevisionDsr } from '@/app/actions/dsr';
+import { approveDsr, requestRevisionDsr, undoApproveDsr } from '@/app/actions/dsr';
 import {
   Printer,
   MessageSquare,
@@ -19,7 +19,10 @@ import {
   HardHat,
   Camera,
   AlertTriangle,
-  FileCheck
+  FileCheck,
+  RotateCcw,
+  Edit3,
+  Lock
 } from 'lucide-react';
 
 interface DsrDetailClientProps {
@@ -38,9 +41,11 @@ export function DsrDetailClient({ report, currentUser }: DsrDetailClientProps) {
   const [isApproving, setIsApproving] = useState(false);
   const [isRevisionInputOpen, setIsRevisionInputOpen] = useState(false);
   const [revisionNotes, setRevisionNotes] = useState('');
+  const [isUndoingApprove, setIsUndoingApprove] = useState(false);
 
   const canApprove = currentUser && (currentUser.role === 'PM' || currentUser.role === 'ADMIN');
   const canDelete = currentUser && (currentUser.role === 'ADMIN' || currentUser.role === 'PM');
+  const isAdmin = currentUser && currentUser.role === 'ADMIN';
 
   const handleApprove = async () => {
     if (!confirm('Apakah Anda yakin menyetujui laporan DSR ini? Laporan yang disetujui akan terkunci dan masuk ke perhitungan klaim termin.')) {
@@ -55,6 +60,32 @@ export function DsrDetailClient({ report, currentUser }: DsrDetailClientProps) {
       alert('Gagal menyetujui laporan');
     } finally {
       setIsApproving(false);
+    }
+  };
+
+  const handleUndoApprove = async () => {
+    if (
+      !confirm(
+        'Apakah Anda yakin ingin membatalkan persetujuan (Undo Approve) laporan DSR ini?\n\n' +
+        'Status laporan akan dikembalikan menjadi SUBMITTED sehingga dapat diedit kembali.'
+      )
+    ) {
+      return;
+    }
+
+    setIsUndoingApprove(true);
+    try {
+      const res = await undoApproveDsr(report.id);
+      if (res.success) {
+        router.refresh();
+      } else {
+        alert(res.error || 'Gagal membatalkan persetujuan laporan');
+      }
+    } catch (e) {
+      console.error(e);
+      alert('Terjadi kesalahan saat membatalkan persetujuan');
+    } finally {
+      setIsUndoingApprove(false);
     }
   };
 
@@ -145,6 +176,38 @@ export function DsrDetailClient({ report, currentUser }: DsrDetailClientProps) {
               redirectTo="/dsr"
               variant="button"
             />
+          )}
+
+          {/* Edit Laporan (When unlocked / not approved) */}
+          {report.status !== 'APPROVED' && currentUser && (
+            <Link
+              href={`/dsr/${report.id}/edit`}
+              className="inline-flex items-center px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-sm transition-all active:scale-95"
+            >
+              <Edit3 className="w-4 h-4 mr-1.5" />
+              Edit Laporan
+            </Link>
+          )}
+
+          {/* Undo Approve Button (Admin Only, when APPROVED) */}
+          {report.status === 'APPROVED' && isAdmin && (
+            <button
+              onClick={handleUndoApprove}
+              disabled={isUndoingApprove}
+              className="inline-flex items-center px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold shadow-sm transition-all active:scale-95 disabled:opacity-50"
+              title="Batalkan approval agar laporan dapat diedit kembali (Khusus Administrator)"
+            >
+              <RotateCcw className="w-4 h-4 mr-1.5" />
+              {isUndoingApprove ? 'Membatalkan...' : 'Undo Approve (Admin)'}
+            </button>
+          )}
+
+          {/* Locked Badge (when APPROVED and not admin) */}
+          {report.status === 'APPROVED' && !isAdmin && (
+            <span className="inline-flex items-center px-3 py-1.5 rounded-xl bg-slate-100 text-slate-500 text-xs font-semibold border border-slate-200">
+              <Lock className="w-3.5 h-3.5 mr-1.5 text-slate-400" />
+              Terkunci (Disetujui)
+            </span>
           )}
 
           {/* PM Approval buttons */}
