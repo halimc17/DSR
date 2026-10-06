@@ -19,6 +19,42 @@ export interface RabItemData {
   percentCumulative?: number;
 }
 
+export interface RabItemHistoryEntry {
+  reportId: string;
+  tanggal: string;
+  hariKerjaKe: number;
+  volumeHariIni: number;
+  lokasiKerja?: string | null;
+  catatan?: string | null;
+  status: string;
+}
+
+export interface RabProgressItemDetail extends RabItemData {
+  nilaiTerpasang: number;
+  entriesCount: number;
+  lastUpdatedDate?: string | null;
+  history: RabItemHistoryEntry[];
+}
+
+export interface RabProgressPageData {
+  summary: {
+    totalItems: number;
+    completedItems: number;
+    inProgressItems: number;
+    notStartedItems: number;
+    totalNilaiRab: number;
+    totalNilaiTerpasang: number;
+    totalBobotRab: number;
+    totalProgressSchedule: number;
+    totalProgressRab: number;
+  };
+  categories: {
+    name: string;
+    subCategories: string[];
+  }[];
+  items: RabProgressItemDetail[];
+}
+
 export interface ProgressInput {
   rabItemId: string;
   volumeHariIni: number;

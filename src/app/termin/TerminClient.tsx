@@ -1,7 +1,8 @@
 'use client';
 
+import Link from 'next/link';
 import { formatRupiah, formatPercent } from '@/lib/calculations';
-import { Receipt, CheckCircle2, Clock, ShieldCheck, Printer } from 'lucide-react';
+import { Receipt, CheckCircle2, Clock, ShieldCheck, Printer, BarChart3, Layers } from 'lucide-react';
 
 interface TerminClientProps {
   data: any;
@@ -10,6 +11,30 @@ interface TerminClientProps {
 export function TerminClient({ data }: TerminClientProps) {
   return (
     <div className="space-y-4 sm:space-y-6">
+      {/* Navigation Tabs Top */}
+      <div className="flex items-center space-x-2 border-b border-slate-200 pb-3 no-print">
+        <Link
+          href="/progress"
+          className="inline-flex items-center space-x-2 px-3 py-2 rounded-xl text-xs sm:text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+        >
+          <BarChart3 className="w-4 h-4 text-slate-400" />
+          <span>Progres Fisik RAB</span>
+        </Link>
+        <Link
+          href="/rab"
+          className="inline-flex items-center space-x-2 px-3 py-2 rounded-xl text-xs sm:text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+        >
+          <Layers className="w-4 h-4 text-slate-400" />
+          <span>Rekonsiliasi Bobot</span>
+        </Link>
+        <Link
+          href="/termin"
+          className="inline-flex items-center space-x-2 px-3 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 text-white shadow-xs"
+        >
+          <Receipt className="w-4 h-4 text-amber-400" />
+          <span>Klaim Termin</span>
+        </Link>
+      </div>
       {/* Header */}
       <div className="bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>

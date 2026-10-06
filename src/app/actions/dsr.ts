@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 import { prisma } from '@/lib/prisma';
-import type { DsrFormData, RabItemData } from '@/lib/types';
+import type { DsrFormData, RabItemData, RabProgressPageData, RabProgressItemDetail } from '@/lib/types';
 import { calculateDailyPenalty, PROJECT_CONFIG } from '@/lib/calculations';
 import { getSessionUser } from '@/lib/auth';
 
@@ -137,6 +137,7 @@ export async function getRabItemsWithProgress(): Promise<RabItemData[]> {
     include: {
       progressEntries: {
         where: {
+          isPekerjaanTambah: false,
           dailyReport: {
             status: { in: ['APPROVED', 'SUBMITTED'] },
           },
@@ -169,6 +170,131 @@ export async function getRabItemsWithProgress(): Promise<RabItemData[]> {
       percentCumulative: Number(pct.toFixed(1)),
     };
   });
+}
+
+export async function getRabProgressPageData(): Promise<RabProgressPageData> {
+  const items = await prisma.rabItem.findMany({
+    where: { projectId: PROJECT_ID },
+    orderBy: { urutan: 'asc' },
+    include: {
+      progressEntries: {
+        where: {
+          isPekerjaanTambah: false,
+          dailyReport: {
+            status: { in: ['APPROVED', 'SUBMITTED'] },
+          },
+        },
+        include: {
+          dailyReport: {
+            select: {
+              id: true,
+              tanggal: true,
+              hariKerjaKe: true,
+              status: true,
+            },
+          },
+        },
+        orderBy: {
+          dailyReport: {
+            tanggal: 'desc',
+          },
+        },
+      },
+    },
+  });
+
+  let totalActualProgressSchedule = 0;
+  let totalActualProgressRab = 0;
+  let totalNilaiTerpasang = 0;
+  let completedItems = 0;
+  let inProgressItems = 0;
+  let notStartedItems = 0;
+
+  const categoriesMap = new Map<string, Set<string>>();
+
+  const detailedItems: RabProgressItemDetail[] = items.map((item) => {
+    if (!categoriesMap.has(item.kategori)) {
+      categoriesMap.set(item.kategori, new Set());
+    }
+    categoriesMap.get(item.kategori)!.add(item.subKategori);
+
+    const volDone = item.progressEntries.reduce((acc, curr) => acc + curr.volumeHariIni, 0);
+    const pct = item.volume > 0 ? (volDone / item.volume) * 100 : 0;
+    const ratio = item.volume > 0 ? Math.min(volDone / item.volume, 1.0) : 0;
+
+    totalActualProgressSchedule += ratio * item.bobotJadwalAsli;
+    totalActualProgressRab += ratio * item.bobotPersen;
+
+    const nilaiTerpasang = Math.round(ratio * item.totalHarga);
+    totalNilaiTerpasang += nilaiTerpasang;
+
+    if (pct >= 99.9) {
+      completedItems++;
+    } else if (pct > 0.01) {
+      inProgressItems++;
+    } else {
+      notStartedItems++;
+    }
+
+    const latestReport = item.progressEntries[0]?.dailyReport;
+
+    return {
+      id: item.id,
+      kode: item.kode,
+      parentKode: item.parentKode,
+      kategori: item.kategori,
+      subKategori: item.subKategori,
+      uraian: item.uraian,
+      volume: item.volume,
+      satuan: item.satuan,
+      hargaUpah: item.hargaUpah,
+      hargaBahan: item.hargaBahan,
+      totalHarga: item.totalHarga,
+      bobotPersen: item.bobotPersen,
+      bobotJadwalAsli: item.bobotJadwalAsli,
+      selisihBobot: item.selisihBobot,
+      statusRekonsiliasi: item.statusRekonsiliasi,
+      urutan: item.urutan,
+      volumeCumulative: Number(volDone.toFixed(2)),
+      percentCumulative: Number(pct.toFixed(1)),
+      nilaiTerpasang,
+      entriesCount: item.progressEntries.length,
+      lastUpdatedDate: latestReport ? latestReport.tanggal.toISOString().split('T')[0] : null,
+      history: item.progressEntries.map((pe) => ({
+        reportId: pe.dailyReport.id,
+        tanggal: pe.dailyReport.tanggal.toISOString().split('T')[0],
+        hariKerjaKe: pe.dailyReport.hariKerjaKe,
+        volumeHariIni: pe.volumeHariIni,
+        lokasiKerja: pe.lokasiKerja,
+        catatan: pe.catatan,
+        status: pe.dailyReport.status,
+      })),
+    };
+  });
+
+  const totalNilaiRab = items.reduce((acc, i) => acc + i.totalHarga, 0);
+  const totalBobotRab = items.reduce((acc, i) => acc + i.bobotPersen, 0);
+
+  const categories = Array.from(categoriesMap.entries()).map(([name, subCats]) => ({
+    name,
+    subCategories: Array.from(subCats),
+  }));
+
+  return {
+    summary: {
+      totalItems: items.length,
+      completedItems,
+      inProgressItems,
+      notStartedItems,
+      totalNilaiRab,
+      totalNilaiTerpasang,
+      totalBobotRab: Number(totalBobotRab.toFixed(2)),
+      totalProgressSchedule: Number(totalActualProgressSchedule.toFixed(2)),
+      totalProgressRab: Number(totalActualProgressRab.toFixed(2)),
+    },
+    categories,
+    items: detailedItems,
+  };
 }
 
 export async function getDsrList() {

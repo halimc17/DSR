@@ -18,7 +18,8 @@ import {
   Shield,
   Briefcase,
   HardHat,
-  Crown
+  Crown,
+  BarChart3,
 } from 'lucide-react';
 import { getCurrentUser, logoutUser } from '@/app/actions/auth';
 import type { SessionUser } from '@/types/auth';
@@ -64,6 +65,7 @@ export function Navbar({ initialUser = null }: NavbarProps) {
   const navItems = [
     { label: 'Dashboard', href: '/', icon: Home },
     { label: 'Laporan DSR', href: '/dsr', icon: ClipboardList },
+    { label: 'Progres RAB', href: '/progress', icon: BarChart3 },
     { label: 'Rekonsiliasi', href: '/rab', icon: Layers },
     { label: 'Klaim Termin', href: '/termin', icon: Receipt },
   ];
@@ -292,7 +294,7 @@ export function Navbar({ initialUser = null }: NavbarProps) {
 
       {/* Mobile & Tablet Fixed Bottom Navigation Bar (App-like Feel) */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-slate-200 shadow-2xl py-1 px-2 no-print safe-area-bottom">
-        <div className={`grid ${isManagement ? 'grid-cols-5' : 'grid-cols-4'} items-center`}>
+        <div className={`grid ${isManagement ? 'grid-cols-6' : 'grid-cols-5'} items-center`}>
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = pathname === item.href || (item.href !== '/' && pathname?.startsWith(item.href));

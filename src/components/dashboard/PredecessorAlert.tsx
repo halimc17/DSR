@@ -54,13 +54,19 @@ export function PredecessorAlert({ items }: PredecessorAlertProps) {
             ))}
           </div>
 
-          <div className="mt-3 flex justify-end">
+          <div className="mt-3 flex flex-wrap items-center justify-end gap-3 pt-1 border-t border-amber-200/60">
             <Link
               href="/rab"
-              className="inline-flex items-center text-xs font-bold text-amber-900 hover:text-amber-950 underline"
+              className="inline-flex items-center text-xs font-medium text-amber-800 hover:text-amber-950 hover:underline"
             >
-              Lihat Seluruh Item RAB & Rekonsiliasi
-              <ChevronRight className="w-3.5 h-3.5 ml-0.5" />
+              Rekonsiliasi Bobot
+            </Link>
+            <Link
+              href="/progress"
+              className="inline-flex items-center text-xs font-bold text-amber-950 hover:underline bg-amber-200/80 hover:bg-amber-200 px-2.5 py-1 rounded-lg transition-colors"
+            >
+              Lihat Progress Bar Seluruh 65 Item RAB
+              <ChevronRight className="w-3.5 h-3.5 ml-1" />
             </Link>
           </div>
         </div>

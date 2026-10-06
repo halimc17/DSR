@@ -1,6 +1,7 @@
+import Link from 'next/link';
 import { getRabItemsWithProgress } from '@/app/actions/dsr';
 import { formatRupiah, formatPercent } from '@/lib/calculations';
-import { Layers, AlertTriangle, CheckCircle2, Search, Info } from 'lucide-react';
+import { Layers, AlertTriangle, CheckCircle2, Search, Info, BarChart3, Receipt } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
@@ -13,6 +14,30 @@ export default async function RabReconciliationPage() {
 
   return (
     <div className="space-y-4 sm:space-y-6">
+      {/* Navigation Tabs Top */}
+      <div className="flex items-center space-x-2 border-b border-slate-200 pb-3">
+        <Link
+          href="/progress"
+          className="inline-flex items-center space-x-2 px-3 py-2 rounded-xl text-xs sm:text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+        >
+          <BarChart3 className="w-4 h-4 text-slate-400" />
+          <span>Progres Fisik RAB</span>
+        </Link>
+        <Link
+          href="/rab"
+          className="inline-flex items-center space-x-2 px-3 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 text-white shadow-xs"
+        >
+          <Layers className="w-4 h-4 text-amber-400" />
+          <span>Rekonsiliasi Bobot</span>
+        </Link>
+        <Link
+          href="/termin"
+          className="inline-flex items-center space-x-2 px-3 py-2 rounded-xl text-xs sm:text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+        >
+          <Receipt className="w-4 h-4 text-slate-400" />
+          <span>Klaim Termin</span>
+        </Link>
+      </div>
       {/* Header */}
       <div className="bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-sm">
         <div className="flex items-center space-x-3 mb-2">
