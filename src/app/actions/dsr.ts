@@ -312,6 +312,13 @@ export async function getDsrList() {
   });
 }
 
+export async function getPeriods() {
+  return await prisma.period.findMany({
+    where: { projectId: PROJECT_ID },
+    orderBy: { mingguKe: 'asc' },
+  });
+}
+
 export async function getDsrById(id: string) {
   return await prisma.dailyReport.findUnique({
     where: { id },

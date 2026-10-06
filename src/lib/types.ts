@@ -125,3 +125,14 @@ export interface DsrFormData {
   issues: IssueInput[];
   photos: PhotoInput[];
 }
+
+export interface PeriodData {
+  id: string;
+  projectId: string;
+  mingguKe: number;
+  tanggalMulai: Date | string;
+  tanggalSelesai: Date | string;
+  bobotRencana: number;
+  bobotKumulatifRencana: number;
+  nilaiKumulatifRencana: number;
+}

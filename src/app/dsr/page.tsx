@@ -1,4 +1,4 @@
-import { getDsrList } from '@/app/actions/dsr';
+import { getDsrList, getPeriods } from '@/app/actions/dsr';
 import { getCurrentUser } from '@/app/actions/auth';
 import { DsrListClient } from '@/components/dsr/DsrListClient';
 
@@ -10,10 +10,11 @@ export const metadata = {
 };
 
 export default async function DsrListPage() {
-  const [dsrList, currentUser] = await Promise.all([
+  const [dsrList, periods, currentUser] = await Promise.all([
     getDsrList(),
+    getPeriods(),
     getCurrentUser()
   ]);
 
-  return <DsrListClient dsrList={dsrList} currentUser={currentUser} />;
+  return <DsrListClient dsrList={dsrList} periods={periods} currentUser={currentUser} />;
 }
